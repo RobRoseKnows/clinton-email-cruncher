@@ -9,6 +9,7 @@ zipPDFs.py
 3. Write the PDFs into each zip file from pdfs/
 
 """
+from __future__ import print_function, division
 
 from hrcemail_common import *
 import zipfile
@@ -17,7 +18,7 @@ import os
 docClasses = (Document.select(fn.Distinct(Document.documentClass).alias("docClass")))
 
 for docClass in docClasses:
-	print "working on ",docClass.docClass
+	print("working on ",docClass.docClass)
 	if not os.path.isfile("zips/"+docClass.docClass+".zip"):
 		with zipfile.ZipFile("zips/"+docClass.docClass+".zip", "w") as zf:
 			docIDs = (Document.select(Document.docID).where(Document.documentClass == docClass.docClass))

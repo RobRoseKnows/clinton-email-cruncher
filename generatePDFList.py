@@ -8,6 +8,7 @@ generatePDFList.py
 2. Write out file for wget to use
 """
 
+from __future__ import print_function, division
 from hrcemail_common import *
 
 pdf_base = "https://foia.state.gov/searchapp/"

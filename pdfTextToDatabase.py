@@ -10,6 +10,7 @@ pdfTextToDatabase.py
 4. Write contents back to the database
 
 """
+from __future__ import print_function, division
 
 from hrcemail_common import *
 import string
@@ -31,7 +32,7 @@ docIDs = Document.select(Document.docID).where(Document.docText >> None)
 
 for docID in docIDs:
 	filename = docID.docID
-	print "Working on",filename
+	print("Working on",filename)
 	output_string = extract(filename)
 	insert_query = Document.update(docText = output_string).where(Document.docID == filename)
 	insert_query.execute()

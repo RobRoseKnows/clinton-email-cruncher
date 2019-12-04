@@ -8,7 +8,7 @@ downloadMetadata.py
 2. Write rows to sqlite db, ON DUPLICATE KEY UPDATE VALUES
 
 """
-
+from __future__ import print_function, division
 from datetime import datetime
 import requests
 import requests_cache
@@ -56,14 +56,14 @@ def compileResultsList(results_list=[],start=0, limit=1000):
 	
 def formatTimestamp(timestamp):
 	try:
-		return datetime.fromtimestamp(timestamp/1000).strftime("%Y-%m-%d")
+		return datetime.fromtimestamp(timestamp//1000).strftime("%Y-%m-%d")
 	except TypeError:
 		return None
 
 results_list = compileResultsList()
 
-print "got",len(results_list),"total document rows"
-print "writing rows to sqlite database ..."
+print("got",len(results_list),"total document rows")
+print("writing rows to sqlite database ...")
 
 with db.transaction():
 	for result in results_list:
